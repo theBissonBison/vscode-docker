@@ -37,6 +37,7 @@ interface BrowsablePort {
     containerPort: number;
 }
 
+
 function toBrowsablePort(port: PortBinding): BrowsablePort {
     let host: string = port.hostname;
     if (
