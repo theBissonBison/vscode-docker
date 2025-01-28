@@ -6,6 +6,7 @@
 import { IActionContext, IAzureQuickPickItem, TelemetryProperties } from '@microsoft/vscode-azext-utils';
 import { PortBinding } from '@microsoft/vscode-container-client';
 // import { PortBinding } from "./portBinding";
+import { RunContainerExtraHost } from '@microsoft/vscode-container-client';
 import * as vscode from 'vscode';
 import { ext } from "../../extensionVariables";
 import { ContainerTreeItem } from "../../tree/containers/ContainerTreeItem";
@@ -37,8 +38,8 @@ interface BrowsablePort {
     containerPort: number;
 }
 
-function toBrowsablePort(port: PortBinding): BrowsablePort {
-    let host: string = port.hostname;
+function toBrowsablePort(port: PortBinding, hostnamekey: RunContainerExtraHost): BrowsablePort {
+    let host: string = hostnamekey.hostname;
     if (
         host === '0.0.0.0' || host === '::' || // IP is standard binding (IPv4 or IPv6)
         host === '127.0.0.1' || host === '::1' // IP is a common loopback binding (IPv4 or IPv6)
